@@ -141,7 +141,7 @@ for (let i = 0; i < NUM_CIRCLES; i++) {
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 		for (let i = 0; i < circleList.length; i++) {
-			circleList[i].update0();
+			circleList[i].update0(gravity);
 		}
 
 		for(let reps = 0; reps < circleList.length; reps++){
