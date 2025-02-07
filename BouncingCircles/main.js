@@ -22,16 +22,13 @@ async function main() {
 			gravity[1] = -1;
 		}
 		else{
-			if(x > 90){
-				x = 90;
-			}
-			if(x < -90){
-				x = -90;
-			}
-			gravity[0] = y/90;
-			gravity[1] = -x/90;
-		}
+			if(x > 90) x = 90;
+			if(x < -90) x = -90;
+			gravity[0] = y / 90;
+			gravity[1] = -x / 90;
 	}
+	console.log(`Updated Gravity: gravity[0]=${gravity[0]}, gravity[1]=${gravity[1]}`);
+}
 
 	//
 	// Init gl
