@@ -1,0 +1,24 @@
+{
+  "name": "BouncingCirclesPWA",
+  "short_name": "PWA",
+  "icons": [
+    {
+      "src": "icons/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "any": "maskable"
+    },
+    {
+      "src": "icons/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "any": "maskable"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "start_url": "index.html",
+  "description": "Circles bounce around",
+  "oreientation":"portrait",
+  "display": "fullscreen"
+}

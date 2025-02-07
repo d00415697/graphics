@@ -9,6 +9,8 @@ async function main() {
 	// Init gl
 	// 
 	const canvas = document.getElementById('glcanvas');
+	canvas.width = canvas.clientWidth;
+	canvas.height = canvas.clientHeight;
 	const gl = canvas.getContext('webgl');
 
 	if (!gl) {
