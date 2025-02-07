@@ -25,15 +25,17 @@ class Circle{
     }
 
     //function declarations for update 0 - 2
-    update0(){
+    update0(gravity){
         // Ball Wall Collison
-        this.dy -= 0.25;
+        // this.dy -= 0.25; //scrape code, but save just in cass
+        this.dx += gravity[0] * 0.25; // 31 - 32 is new code added to modify the way gravity works
+        this.dy += gravity[1] * 0.25;
         this.dy *= this.airfriction;
         this.dx *= this.airfriction;
         
     }
     //
-    update01(DT, circleList, i){
+    update01(DT, circleList, i, gravity){
         // Gravity
 
         //Air friction
@@ -77,8 +79,10 @@ class Circle{
             }
         }
     }
-    update02(DT, i){
+    update02(DT, i, gravity){
         // Update Position
+        this.dx += gravity[0] * DT; // lines 84 - 85 apply the gravity again 
+        this.dy += gravity[1] * DT;
         this.x += this.dx*DT;
         this.y += this.dy*DT;
     }

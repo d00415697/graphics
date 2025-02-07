@@ -6,6 +6,34 @@ async function main() {
 	console.log('This is working');
 
 	//
+	// Accelerometer
+	//
+
+	let gravity = [0, 0];
+	if(!(window.DeviceOrientationEvent == undefined)){
+		window.addEventListener("deviceorientation", handleOrientation);
+	}
+
+	function handleOrientation(event){
+		let x = event.beta;
+		let y = event.gamma;
+		if(x == null || y == null){
+			gravity[0] = 0;
+			gravity[1] = -1;
+		}
+		else{
+			if(x > 90){
+				x = 90;
+			}
+			if(x < -90){
+				x = -90;
+			}
+			gravity[0] = y/90;
+			gravity[1] = -x/90;
+		}
+	}
+
+	//
 	// Init gl
 	// 
 	const canvas = document.getElementById('glcanvas');
@@ -118,13 +146,12 @@ for (let i = 0; i < NUM_CIRCLES; i++) {
 
 		for(let reps = 0; reps < circleList.length; reps++){
 			for(let i = 0; i < circleList.length; i++){
-				// circleList[i].update01(DT, xlow, xhigh, ylow, yhigh, circleList, i);
-				circleList[i].update01(DT, circleList, i);
+				circleList[i].update01(DT, circleList, i, gravity);
 			}
 		}
 
 		for(let i = 0; i < circleList.length; i++){
-			circleList[i].update02(DT,i);
+			circleList[i].update02(DT,i, gravity);
 		}
 
 		// Draw the scene
