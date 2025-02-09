@@ -28,8 +28,8 @@ class Circle{
     update0(gravity = [0, -1]){
         // Ball Wall Collison
         // this.dy -= 0.25; //scrape code, but save just in cass
-        this.dx += gravity[0] * 0.5; // 31 - 32 is new code added to modify the way gravity works
-        this.dy += gravity[1] * 0.5;
+        this.dx += gravity[0] * 0.2; // 31 - 32 is new code added to modify the way gravity works
+        this.dy += gravity[1] * 0.2;
         this.dy *= this.airfriction;
         this.dx *= this.airfriction;
         
