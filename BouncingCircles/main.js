@@ -17,6 +17,9 @@ async function main() {
 	function handleOrientation(event){
 		let x = event.beta;
 		let y = event.gamma;
+
+		console.log(`Device Tilt - Beta: ${x}, Gamma: ${y}`);
+
 		if(x == null || y == null){
 			gravity[0] = 0;
 			gravity[1] = -1;
