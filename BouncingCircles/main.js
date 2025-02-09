@@ -165,27 +165,4 @@ for (let i = 0; i < NUM_CIRCLES; i++) {
 	  requestAnimationFrame(redraw);
 };
 
-async function requestMotionPermission() {
-    if (typeof DeviceMotionEvent.requestPermission === 'function') {
-        try {
-            let permissionState = await DeviceMotionEvent.requestPermission();
-            if (permissionState === 'granted') {
-                window.addEventListener("deviceorientation", handleOrientation);
-                console.log("✅ Motion Permission Granted");
-            } else {
-                console.error("❌ Motion Permission Denied");
-            }
-        } catch (error) {
-            console.error("❌ Motion Permission Request Failed:", error);
-        }
-    } else {
-        console.log("Motion permission not needed on this device.");
-        window.addEventListener("deviceorientation", handleOrientation);
-    }
-}
-
-// Ask for permission when the user taps the screen
-document.addEventListener("click", requestMotionPermission);
-document.addEventListener("touchstart", requestMotionPermission);
-
 
