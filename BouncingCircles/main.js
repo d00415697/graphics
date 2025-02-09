@@ -33,6 +33,29 @@ async function main() {
 	console.log(`Updated Gravity: gravity[0]=${gravity[0]}, gravity[1]=${gravity[1]}`);
 }
 
+if (DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === "function") {
+    // Create a button for permission request
+    const button = document.createElement("button");
+    button.innerText = "Enable Device Orientation";
+    document.body.appendChild(button);
+
+    button.addEventListener("click", function () {
+        DeviceOrientationEvent.requestPermission()
+            .then((permissionState) => {
+                if (permissionState === "granted") {
+                    window.addEventListener("deviceorientation", handleOrientation, true);
+                    button.style.display = "none"; // Hide button after granting permission
+                } else {
+                    alert("❌ Device orientation permission not granted");
+                }
+            })
+            .catch(console.error);
+    });
+} else {
+    // For non-iOS devices, add event listener directly
+    window.addEventListener("deviceorientation", handleOrientation, true);
+}
+
 	//
 	// Init gl
 	// 
