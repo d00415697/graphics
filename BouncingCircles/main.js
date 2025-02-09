@@ -10,9 +10,6 @@ async function main() {
 	//
 
 	let gravity = [0, 0];
-	if(!(window.DeviceOrientationEvent == undefined)){
-		window.addEventListener("deviceorientation", handleOrientation);
-	}
 
 	function handleOrientation(event){
 		let x = event.beta;
