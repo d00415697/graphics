@@ -14,7 +14,7 @@ class Circle{
         const miny = ylow+this.size;
         const maxy = yhigh-this.size;
         this.y = miny + Math.random()*(maxy-miny);
-        this.airfriction = 0.99;
+        this.airfriction = 0.9999;
         this.degrees = Math.random()*90;
         this.dx = Math.random()*2+2; // 2 to 4
         if (Math.random()>.5)
