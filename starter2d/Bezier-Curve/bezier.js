@@ -10,13 +10,16 @@ class Point2{
 // Function to generate a random neon color
 function getNeonColor() {
     const neonColors = [
-        [1, 0, 0, 1],   // Red
-        [1, 0.08, 0.58, 1], // Neon Pink
-        [0, 1, 0, 1],   // Green
-        [0.08, 1, 1, 1], // Cyan
-        [1, 1, 0, 1],   // Yellow
-        [0.58, 0.08, 1, 1], // Neon Purple
-        [0, 0, 1, 1]    // Blue
+        [0.0, 0.8, 1.0, 1.0],   // Neon Blue
+        [0.1, 1.0, 0.2, 1.0], // Neon Green
+        [1.0, 0.0, 0.6, 1.0],   // Neon Pink
+        [1.0, 0.4, 0.0, 1.0], // Neon Orange
+        [1.0, 1.0, 0.0, 1.0],   // Neon Yellow
+        [0.7, 0.0, 1.0, 1.0], // Neon Purple
+        [0.0, 1.0, 1.0, 1.0],    // Neon Cyan
+        [1.0, 0.0, 0.2, 1.0], // Neon red
+        [0.8, 1.0, 0.0, 1.0], // Electric Lime
+        [1.0, 0.0, 0.8, 1.0] // Hot Pink
     ];
     return neonColors[Math.floor(Math.random() * neonColors.length)];
 }

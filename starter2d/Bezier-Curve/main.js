@@ -72,13 +72,25 @@ async function main() {
 	// Bezier Curve button 
 	//
 
-	document.getElementById("addBezier").addEventListener("click",function(){
-		let rX = Math.random() * 6 - 3;
-		let rY = Math.random() * 6 - 3;
-		bezierlist.push(new Bezier(
-			new Point2(rX, rY), new Point2(rX + 1, rY + 3), new Point2(rX + 3, rY + 3), new Point2(rX + 5, rY)
-		));
+	document.getElementById("addBezier").addEventListener("click", function() {
+		addBezierCurve(); // Calls the function to add a new randomized Bezier curve
 	});
+	
+	// Function to create a new Bezier curve with randomized spawn locations
+	function addBezierCurve() {
+		let rX = Math.random() * 6 - 3; // Random X position
+		let rY = Math.random() * 6 - 3; // Random Y position
+	
+		let newBezier = new Bezier(
+			new Point2(rX, rY),
+			new Point2(rX + Math.random() * 2 + 1, rY + Math.random() * 3 + 1), 
+			new Point2(rX + Math.random() * 3 + 2, rY + Math.random() * 3 + 2), 
+			new Point2(rX + Math.random() * 4 + 3, rY)
+		);
+	
+		bezierlist.push(newBezier);
+	}
+	
 
 	//
 	// Mouse event Handlers
@@ -123,6 +135,32 @@ async function main() {
 	// 	const xWorld = xlow + event.offsetX / gl.canvas.clientWidth * (xhigh - xlow);
 	// 	const yWorld = ylow + (gl.canvas.clientHeight - event.offsetY) / gl.canvas.clientHeight * (yhigh - ylow);
 	// 	// Do whatever you want here, in World Coordinates.
+	// }
+
+	//
+	// Adding Bezier curve
+	//
+
+	// function addBezierCurve(){
+	// 	let x1 = randomInRange(xlow + 1, xhigh - 1);
+	// 	let y1 = randomInRange(ylow + 1, yhigh - 1);
+		
+	// 	let x2 = randomInRange(xlow + 1, xhigh - 1);
+	// 	let y2 = randomInRange(ylow + 1, yhigh - 1);
+		
+	// 	let x3 = randomInRange(xlow + 1, xhigh - 1);
+	// 	let y3 = randomInRange(ylow + 1, yhigh - 1);
+		
+	// 	let x4 = randomInRange(xlow + 1, xhigh - 1);
+	// 	let y4 = randomInRange(ylow + 1, yhigh - 1);
+
+	// 	let newBezier = new Bezier(
+	// 		new Point2(x1, y1),
+	// 		new Point2(x2, y2),
+	// 		new Point2(x3, y3),
+	// 		new Point2(x4, y4)
+	// 	);
+	// 	bezierlist.push(newBezier);
 	// }
 
 	//
