@@ -7,9 +7,26 @@ class Point2{
     }
 }
 
+// Function to generate a random neon color
+function getNeonColor() {
+    const neonColors = [
+        [1, 0, 0, 1],   // Red
+        [1, 0.08, 0.58, 1], // Neon Pink
+        [0, 1, 0, 1],   // Green
+        [0.08, 1, 1, 1], // Cyan
+        [1, 1, 0, 1],   // Yellow
+        [0.58, 0.08, 1, 1], // Neon Purple
+        [0, 0, 1, 1]    // Blue
+    ];
+    return neonColors[Math.floor(Math.random() * neonColors.length)];
+}
+
+
+
 class Bezier{
     constructor(p0, p1, p2, p3){
         this.points = [p0, p1, p2, p3];
+        this.color = getNeonColor();
     }
     evaluate(t) {
         const {points} = this;
@@ -24,11 +41,11 @@ class Bezier{
             let point = this.evaluate(t);
             curve_points.push(point.x, point.y);
         }
-        drawLineStrip(gl, shaderProgram, curve_points);
+        drawLineStrip(gl, shaderProgram, curve_points, this.color);
     }
     drawControlPoints(gl, shaderProgram){
         for(let p of this.points){
-            drawCircle(gl, shaderProgram, p.x, p.y, 0.2, [1, 0, 0, 1]);
+            drawCircle(gl, shaderProgram, p.x, p.y, 0.2, this.color);
         }
     }
     //
