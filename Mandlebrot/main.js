@@ -41,6 +41,13 @@ async function main() {
 	// Create content to display
 	//
 
+	//
+	// Zoom Handles
+	//
+	let zoom = 1.0;
+	let offsetX = 0.0;
+	let offsetY = 0.0;
+
 
 	//
 	// Register Listeners
@@ -61,6 +68,16 @@ async function main() {
 		// Do whatever you want here, in World Coordinates.
 	}
 
+	canvas.addEventListener("wheel", function(event){
+		const zoom_Factor = 1.1;
+		if(event.deltaY < 0){
+			zoom /= zoom_Factor;
+		} else{
+			zoom*= zoom_Factor;
+		}
+		event.preventDefault();
+	});
+
 	//
 	// Main render loop
 	//
@@ -74,8 +91,19 @@ async function main() {
 
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-		drawRectangle(gl, shaderProgram, xlow, ylow, xhigh, yhigh, [1,0,0,1]); // override the default color with red.
+		const resolutionUniformLocation = gl.getUniformLocation(shaderProgram, "uResolution");
+		gl.uniform2(resolutionUniformLocation, gl.canvas.width, gl.canvas.height);
 		
+		const zoomUniformLocation = gl.getUniformLocation(shaderProgram, "uZoom");
+		gl.uniform1f(zoomUniformLocation, zoom);
+
+		const offsetXniformLocation = gl.getUniformLocation(shaderProgram, "uOffsetX");
+		gl.uniform1f(offsetXniformLocation, offsetX);
+
+		const offsetYniformLocation = gl.getUniformLocation(shaderProgram, "uOffssetY");
+		gl.uniform1f(offsetYniformLocation, offsetY);
+		
+		gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 		requestAnimationFrame(redraw);
 	}
 	requestAnimationFrame(redraw);

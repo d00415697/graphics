@@ -1,3 +1,18 @@
+//
+// uniforms for interactions
+//
+
+uniform float uZoom;
+uniform float uOffsetX;
+uniform float uOffsetY;
+
+// 
+// Screen resolution
+//
+
+uniform vec2 uResolution;
+#define MAX_ITER = 100
+
 int MandelbrotTest(float cr, float ci)
 {
     int count = 0;
@@ -22,4 +37,14 @@ int MandelbrotTest(float cr, float ci)
     }
 
     return count;
+}
+
+void main(){
+  vec2 uv = (gl_FragCoord.xy / uResolution) * 2.0 - 1.0;
+  vec2 c = uv * uZoom + vec2(uOffsetX, uOffsetY);
+  int iteration = MandelbrotTest(c.x, c.y);
+  float norm = float(iteration) / float(MAX_ITER);
+
+  vec3 color = vec3(0.5 + 0.5 * cos(6.2831 * norm), 0.5 + 0.5 * sin(6.2831 * norm), 0.5 - 0.5 * cos(6.2831 * norm));
+  gl_FragColor = vec4(color, 1.0);
 }
